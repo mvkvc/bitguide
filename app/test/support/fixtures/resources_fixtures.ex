@@ -18,4 +18,19 @@ defmodule Bitguide.ResourcesFixtures do
 
     collection
   end
+
+  @doc """
+  Generate a context.
+  """
+  def context_fixture(attrs \\ %{}) do
+    {:ok, context} =
+      attrs
+      |> Enum.into(%{
+        content: "some content",
+        url: "some url"
+      })
+      |> Bitguide.Resources.create_context()
+
+    context
+  end
 end

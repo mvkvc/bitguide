@@ -58,4 +58,60 @@ defmodule Bitguide.ResourcesTest do
       assert %Ecto.Changeset{} = Resources.change_collection(collection)
     end
   end
+
+  describe "contexts" do
+    alias Bitguide.Resources.Context
+
+    import Bitguide.ResourcesFixtures
+
+    @invalid_attrs %{url: nil, content: nil}
+
+    test "list_contexts/0 returns all contexts" do
+      context = context_fixture()
+      assert Resources.list_contexts() == [context]
+    end
+
+    test "get_context!/1 returns the context with given id" do
+      context = context_fixture()
+      assert Resources.get_context!(context.id) == context
+    end
+
+    test "create_context/1 with valid data creates a context" do
+      valid_attrs = %{url: "some url", content: "some content"}
+
+      assert {:ok, %Context{} = context} = Resources.create_context(valid_attrs)
+      assert context.url == "some url"
+      assert context.content == "some content"
+    end
+
+    test "create_context/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Resources.create_context(@invalid_attrs)
+    end
+
+    test "update_context/2 with valid data updates the context" do
+      context = context_fixture()
+      update_attrs = %{url: "some updated url", content: "some updated content"}
+
+      assert {:ok, %Context{} = context} = Resources.update_context(context, update_attrs)
+      assert context.url == "some updated url"
+      assert context.content == "some updated content"
+    end
+
+    test "update_context/2 with invalid data returns error changeset" do
+      context = context_fixture()
+      assert {:error, %Ecto.Changeset{}} = Resources.update_context(context, @invalid_attrs)
+      assert context == Resources.get_context!(context.id)
+    end
+
+    test "delete_context/1 deletes the context" do
+      context = context_fixture()
+      assert {:ok, %Context{}} = Resources.delete_context(context)
+      assert_raise Ecto.NoResultsError, fn -> Resources.get_context!(context.id) end
+    end
+
+    test "change_context/1 returns a context changeset" do
+      context = context_fixture()
+      assert %Ecto.Changeset{} = Resources.change_context(context)
+    end
+  end
 end
