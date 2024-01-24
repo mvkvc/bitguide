@@ -7,7 +7,6 @@ defmodule Bitguide.Resources.Collection do
   schema "collections" do
     field :name, :string
     field :urls, {:array, :string}
-    field :user_id, :id
 
     belongs_to :user, User
     has_many :contexts, Context

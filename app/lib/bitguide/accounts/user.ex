@@ -2,6 +2,7 @@ defmodule Bitguide.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias Bitguide.Resources.Collection
+  alias Bitguide.Chats.Agent
 
   schema "users" do
     field :email, :string
@@ -10,6 +11,7 @@ defmodule Bitguide.Accounts.User do
     field :confirmed_at, :naive_datetime
 
     has_many :collections, Collection
+    has_many :agents, Agent
 
     timestamps(type: :utc_datetime)
   end
