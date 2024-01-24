@@ -7,6 +7,8 @@
 # General application configuration
 import Config
 
+config :bitguide, Bitguide.Repo, types: Bitguide.PostgrexTypes
+
 config :bitguide,
   ecto_repos: [Bitguide.Repo],
   generators: [timestamp_type: :utc_datetime]

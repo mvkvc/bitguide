@@ -32,6 +32,7 @@ defmodule Bitguide.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:pgvector, "~> 0.2.1"},
       {:oban, "~> 2.16"},
       {:phoenix, "~> 1.7.10"},
       {:phoenix_ecto, "~> 4.4"},
